@@ -15,7 +15,7 @@ async function handler(req, res) {
     !password ||
     password.trim().length < 7
   ) {
-    res.status(422).json({ message: 'Invalid Input, please try again' })
+    res.status(422).json({ message: 'Invalid Input, need valid email and/or password must be 7 characters or more' })
     client.close()
     return
   }

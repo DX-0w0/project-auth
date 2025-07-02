@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import classes from './auth-form.module.css'
+import { signIn } from 'next-auth/react'
 
 async function createUser(email, password) {
   const response = await fetch('/api/auth/signup', {
@@ -37,7 +38,16 @@ function AuthForm() {
     const enteredPassword = passwordInputRef.current.value
 
     if (isLogin) {
-      //user is login
+      const result = await signIn('credentials', {
+        redirect: false,
+        email: enteredEmail,
+        password: enteredPassword,
+      })
+
+      console.log('signin result: ', result)
+      if (!result.error) {
+        // store the session, so when reload SPA session is not lost
+      }
     } else {
       //create a new user
       try {
