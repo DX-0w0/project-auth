@@ -31,3 +31,12 @@ SPA work with tokens instead of sessions
 ## Sign In
 
 - use the `import { signIn } from 'next-auth/react'` method to [sign-in method](https://next-auth.js.org/getting-started/client#signin)
+
+## Router
+import { useRouter } from 'next/router' for /pages (Legacy)
+import { useRouter } from 'next/navigation' /app (App Router)
+
+## Session
+- use server-side to check auth of session rather than on client side, this will rid of the page load flicker 
+- use the `import { useSession } from 'next-auth/react'` to gain access to the {data, status} (client side only)
+- use the `import { getSession } from 'next-auth/react'` (client or server side) doesn't track live sessions changes (snapshot)
