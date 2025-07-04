@@ -29,12 +29,38 @@ function UserProfile() {
     minute: '2-digit',
   })
 
+  async function changePasswordHandler(passwordData) {
+    //  {oldPassword, newPassword} = passwordData
+    try {
+      const response = await fetch('/api/user/change-password', {
+        method: 'PATCH',
+        body: JSON.stringify(passwordData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.message || 'something went wrong')
+      }
+
+      console.log('change-password result:', data)
+
+      alert('Password changed')
+      return true
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
   return (
     <section className={styles.profile}>
       <h1>Your User Profile</h1>
       <p>Email: {session.user.email}</p>
       <p>Session Expires: {date}</p>
-      <ProfileForm />
+      <ProfileForm onChangePassword={changePasswordHandler} />
     </section>
   )
 }
