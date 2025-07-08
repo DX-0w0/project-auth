@@ -26,7 +26,7 @@ async function handler(req, res) {
   }
 
   const client = await connectToDatabase()
-  const db = client.db()
+  const db = client.db(process.env.mongodb_database)
 
   const count = await db.collection('users').countDocuments()
   // console.log('Total users:', count)
