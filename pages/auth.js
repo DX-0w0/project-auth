@@ -19,7 +19,7 @@ function AuthPage() {
 
 export async function getServerSideProps(context) {
   const session = await getSession(context)
-  console.log('a-session', session)
+  // console.log('a-session', session)
 
   if (session) {
     return {

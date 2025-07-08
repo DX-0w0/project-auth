@@ -47,7 +47,9 @@ function AuthForm() {
       })
 
       console.log('signin result: ', result)
-      if (!result.error) {
+      if (!result.ok) {
+        alert(result.error || 'something went wrong')
+      } else {
         // store the session, so when reload SPA session is not lost
         router.replace('/profile')
       }

@@ -7,7 +7,7 @@ function ProfilePage() {
 
 export async function getServerSideProps(context) {
   const session = await getSession({ req: context.req })
-  console.log('p-session', session)
+  // console.log('p-session', session)
 
   if (!session) {
     return {
