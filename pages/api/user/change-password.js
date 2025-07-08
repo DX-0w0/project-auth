@@ -24,7 +24,7 @@ async function handler(req, res) {
   const { oldPassword, newPassword } = data
 
   const client = await connectToDatabase()
-  const usersCollection = client.db(process.env.mongodb_database).collection('users')
+  const usersCollection = client.db().collection('users')
   const user = await usersCollection.findOne({ email: userEmail })
 
   if (!user) {

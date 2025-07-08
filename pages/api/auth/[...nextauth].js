@@ -18,7 +18,7 @@ export const authOptions = {
       async authorize(credentials) {
         const client = await connectToDatabase()
 
-        const usersCollection = client.db(process.env.mongodb_database).collection('users')
+        const usersCollection = client.db().collection('users')
         const user = await usersCollection.findOne({ email: credentials.email })
 
         if (!user) {

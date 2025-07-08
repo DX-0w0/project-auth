@@ -52,6 +52,7 @@ function UserProfile() {
       return true
     } catch (error) {
       console.log(error.message)
+      alert(error.message)
     }
   }
 
