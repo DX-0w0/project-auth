@@ -49,3 +49,9 @@ import { useRouter } from 'next/navigation' /app (App Router)
 
 ## Api Routes
 - use validation to protect endpoints like changing password, make sure the user is authenticated
+
+## When deploy to production 
+- in the .env file/ vercel hosting env set 
+```
+NEXTAUTH_URL="https://your-production-domain.com"
+```

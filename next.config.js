@@ -4,20 +4,14 @@ module.exports = (phase) => {
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
       env: {
-        mongodb_username: process.env.DB_USERNAME,
-        mongodb_password: process.env.DB_PASSWORD,
-        mongodb_clustername: process.env.DB_CLUSTERNAME,
-        mongodb_database: process.env.DB_DATABASE_DEV,
+        mongodb_uri: process.env.MONGODB_URI_DEV,
       },
     }
   }
 
   return {
     env: {
-      mongodb_username: process.env.DB_USERNAME,
-      mongodb_password: process.env.DB_PASSWORD,
-      mongodb_clustername: process.env.DB_CLUSTERNAME,
-      mongodb_database: process.env.DB_DATABASE,
+      mongodb_uri: process.env.MONGODB_URI,
     },
   }
 }
