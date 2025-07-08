@@ -45,13 +45,15 @@ import { useRouter } from 'next/navigation' /app (App Router)
 - 1. The authorize(credentials) return a token object to be used in the callback of jwt(), the credentials args comes from the signIn() 2nd args  
 - 2. jwt({ token, user }) return the token to be used in the session()
 - 3. session({ session, token }) to allow to add additional keys on the return session = useSession() / getSession() and it value are those of the tokens set in the return of authorize()
-- 
+
+## NextAuth
+- NextAuth(authOptions), the [authOptions](https://next-auth.js.org/configuration/options) 
 
 ## Api Routes
 - use validation to protect endpoints like changing password, make sure the user is authenticated
 
-## When deploy to production 
-- in the .env file/ vercel hosting env set 
+## When deploy to production using auth
+- in the .env file / on the vercel hosting site set the env variable `NEXTAUTH_URL` 
 ```
 NEXTAUTH_URL="https://your-production-domain.com"
 ```
