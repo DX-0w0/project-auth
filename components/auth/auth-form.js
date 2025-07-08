@@ -23,6 +23,22 @@ async function createUser(email, password) {
   return data
 }
 
+async function signInUser(email, password, router) {
+  const result = await signIn('credentials', {
+    redirect: false,
+    email: email,
+    password: password,
+  })
+
+  console.log('signin result: ', result)
+  if (!result.ok) {
+    alert(result.error || 'something went wrong')
+  } else {
+    // store the session, so when reload SPA session is not lost
+    router.replace('/profile')
+  }
+}
+
 function AuthForm() {
   const [isLogin, setIsLogin] = useState(true)
   const emailInputRef = useRef()
@@ -40,24 +56,13 @@ function AuthForm() {
     const enteredPassword = passwordInputRef.current.value
 
     if (isLogin) {
-      const result = await signIn('credentials', {
-        redirect: false,
-        email: enteredEmail,
-        password: enteredPassword,
-      })
-
-      console.log('signin result: ', result)
-      if (!result.ok) {
-        alert(result.error || 'something went wrong')
-      } else {
-        // store the session, so when reload SPA session is not lost
-        router.replace('/profile')
-      }
+      signInUser(enteredEmail, enteredPassword, router)
     } else {
       //create a new user
       try {
         const result = await createUser(enteredEmail, enteredPassword)
-        console.log(result)
+        console.log('create user', result)
+        signInUser(enteredEmail, enteredPassword, router)
       } catch (error) {
         console.log(error)
         alert(error)
